@@ -2,7 +2,9 @@
 
 namespace App\Core;
 
-class Request
+use App\Core\Contract\IRequest;
+
+class Request implements IRequest
 {
     public array $query;
     public array $request;
@@ -25,6 +27,11 @@ class Request
         $this->server = $server;
         $this->method = $this->server['REQUEST_METHOD'];
         $this->uri = $this->server['REQUEST_URI'];
+    }
+
+    public function all(): array
+    {
+        return array_merge($this->query, $this->request);
     }
 
     public static function createFromGlobals(): static

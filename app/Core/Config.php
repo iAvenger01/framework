@@ -15,7 +15,9 @@ class Config extends Singleton
     {
         foreach (scandir(__DIR__ . '/../../config') as $file) {
             $fileSetting = preg_match("/(.*).php/", $file, $matches);
-            $this->config[$matches[1]] = require __DIR__ . '/../../config' . $file;
+            if (isset($matches[1])) {
+                $this->config[$matches[1]] = require __DIR__ . '/../../config' . $file;
+            }
         }
     }
 }

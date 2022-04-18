@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Validation\Base\IBaseValidator;
+
 class BaseController
 {
-    public $validator;
+    public IBaseValidator $validator;
 }

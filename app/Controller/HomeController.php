@@ -8,6 +8,6 @@ class HomeController extends BaseController
 {
     public function index(Request $request): Response
     {
-        return Response::json(['test' => 'value']);
+        return Response::json(['data' => 'home page']);
     }
 }

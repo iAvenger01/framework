@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\Core\{Config, Request, Response, Routing\Router};
+use App\Core\{Config, Contract\IRequest, Contract\IResponse, Contract\IRouter, Routing\Router};
 
 class Kernel
 {
-    public Router $router;
+    public IRouter $router;
 
     public Config $config;
 
@@ -16,7 +16,11 @@ class Kernel
         $this->config->setConfig();
     }
 
-    public function handle(Request $request): Response {
+    /**
+     * @throws Http\Exception\NotFoundException
+     * @throws Http\Exception\MethodNotAllowed
+     */
+    public function handle(IRequest $request): IResponse {
         $route = $this->router->find($request);
         return $this->router->run($route, $request);
     }

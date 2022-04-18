@@ -2,9 +2,10 @@
 
 namespace App\Core;
 
+use App\Core\Contract\IResponse;
 use JsonException;
 
-class Response
+class Response implements IResponse
 {
     private int $statusCode;
     
@@ -31,7 +32,7 @@ class Response
     /**
      * @throws JsonException
      */
-    public function send()
+    public function send(): void
     {
         http_response_code($this->statusCode);
 
