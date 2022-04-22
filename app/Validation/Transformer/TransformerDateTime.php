@@ -7,10 +7,10 @@ use DateTime;
 
 class TransformerDateTime extends Transformer
 {
-    private const FORMAT = 'Y-m-d H:i:s';
+    private const _FORMAT = 'Y-m-d H:i:s';
 
     public function transform(mixed $value): bool|DateTime
     {
-        return DateTime::createFromFormat(self::FORMAT, $value);
+        return DateTime::createFromFormat(self::_FORMAT, $value);
     }
 }

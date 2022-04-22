@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Validation\Page;
+namespace App\Validation\Validator\Page;
 
 use App\Validation\Base\BaseValidator;
 use App\Validation\Field;
-use App\Validation\FieldValidator\{ValidatorDateTime, ValidatorName, ValidatorText};
+use App\Validation\FieldValidator\{ValidatorBoolean, ValidatorDateTime, ValidatorName, ValidatorText};
 
 class StoreValidator extends BaseValidator
 {
@@ -17,8 +17,11 @@ class StoreValidator extends BaseValidator
             'content' => new Field(
                 ValidatorText::class
             ),
-            'startedAt' => new Field(
-                ValidatorDateTime::class
+            'isActive' => new Field(
+                ValidatorBoolean::class
+            ),
+            'createdAt' => new Field(
+                ValidatorDateTime::class,
             ),
             'updatedAt' => new Field(
                 ValidatorDateTime::class

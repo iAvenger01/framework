@@ -35,7 +35,7 @@ class Response implements IResponse
     public function send(): void
     {
         http_response_code($this->statusCode);
-
+        header('Content-Type: application/json');
         $data = $this->data;
         if ($this->jsonable) {
             $data = json_encode($this->data, JSON_THROW_ON_ERROR);

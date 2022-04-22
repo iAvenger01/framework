@@ -3,6 +3,7 @@
 namespace App\Validation\Base;
 
 use App\Validation\Field;
+use App\Validation\Rule\Base\Rule;
 
 abstract class BaseValidator implements IBaseValidator
 {
@@ -32,19 +33,18 @@ abstract class BaseValidator implements IBaseValidator
         foreach ($this->fields as $key => $field) {
             if (isset($this->requestData[$key])) {
                 $value = $this->requestData[$key];
-                if($result = $field->validator->validate($value)) {
+                if($field->validator->validate($value)) {
                     $this->validatedData[$key] = $value;
                 } else {
                     $this->errors[$key] = $field->validator->errors;
                 }
-                return $result;
             } else {
                 if ($field->isRequired) {
-                    return false;
+                    $this->errors[$key] = [Rule::ERR_EMPTY];
                 }
             }
         }
-        return count($this->errors) > 0;
+        return count($this->errors) === 0;
     }
 
     public function getErrors(): array {

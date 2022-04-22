@@ -2,6 +2,7 @@
 
 namespace App\Validation\FieldValidator;
 
+use App\Validation\Rule\RuleDateTime;
 use App\Validation\Rule\RuleString;
 use App\Validation\Transformer\TransformerDateTime;
 
@@ -11,7 +12,8 @@ class ValidatorDateTime extends \App\Validation\Base\BaseFieldValidator
     {
         return [
             new RuleString(),
-            new TransformerDateTime()
+            new TransformerDateTime(),
+            new RuleDateTime()
         ];
     }
 }

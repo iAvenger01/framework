@@ -8,6 +8,8 @@ class Page extends Model
 
     public string $content;
 
+    public bool $isActive;
+
     public \DateTimeInterface $createdAt;
 
     public \DateTimeInterface $updatedAt;

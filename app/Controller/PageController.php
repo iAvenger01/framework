@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Core\{Request, Response};
 use App\Model\Page as PageModel;
 use App\Http\Resource\Page as PageResource;
-use App\Validation\Page\StoreValidator;
+use App\Validation\Validator\Page\StoreValidator;
 use DateTime;
 
 class PageController extends BaseController
@@ -28,7 +28,7 @@ class PageController extends BaseController
     public function store(Request $request): Response
     {
         $this->validator = new StoreValidator($request->all());
-        if (!$this->validator->validate()) {
+        if ($result = !$this->validator->validate()) {
             return Response::json($this->validator->getErrors(), 400);
         }
 

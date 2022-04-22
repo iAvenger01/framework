@@ -8,6 +8,10 @@ RUN mkdir /home/developer/.composer
 COPY ./composer.json /home/developer/.composer/composer.json
 RUN chown -R developer:developer /home/developer/.composer
 
+RUN apk add --update ${PHPIZE_DEPS}
+
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 RUN wget https://getcomposer.org/installer -P /home/developer
 RUN php -f /home/developer/installer args --version="2.3.5" --install-dir="/usr/local/bin" --filename="composer"
 RUN chmod +x /usr/local/bin/composer && rm /home/developer/installer
